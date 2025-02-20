@@ -4,11 +4,15 @@ package com.wackstr.leetcode;
 2025-02-19
  */
 public class KthHappyString_1415 {
+
+    private static final int DOWN = 0;
+
     public String getHappyString(int n, int k){
         // eliminate out of bounds condition
         if(isOutOfBounds(n, k)) return "";
+        k -= 1; // adjust for 1-indexing
         // n == 1 is a simple case, no need to compute
-        if(n == 1) return "" + getFirstChar(k - 1);
+        if(n == 1) return "" + getFirstChar(k);
 
         /*
             in an ordered tree, find the change in directions
@@ -23,10 +27,10 @@ public class KthHappyString_1415 {
              1    2  3    4   5    6 <--- final string in ordering
              ab   ac ba   bc  ca   cb
          */
-        int[] chars = getCharDirections(n, k);
+        int[] charDirections = getCharDirections(n, k);
 
         // using the above mapping , convert to final string
-        return convertToString(chars);
+        return convertToString(charDirections);
     }
 
     private static boolean isOutOfBounds(int n, int k) {
@@ -42,7 +46,7 @@ public class KthHappyString_1415 {
     }
 
     private static int[] getCharDirections(int n, int k) {
-        int[] chars = new int[n];
+        int[] charDirection = new int[n];
         /* account for 1-indexing the even/odd parity tells us whether to go
           for smaller or larger option.
           Then at each step we get the quotient after dividing by 2 to get the
@@ -50,22 +54,21 @@ public class KthHappyString_1415 {
           like before even/odd parity tells us whether to go for larger or
           smaller option
          */
-        chars[n - 1] =  (k - 1) % 2;
-        int next = (k - 1) / 2;
-        for(int i = n - 2; i >= 0; i--){
-            chars[i] = i > 0 ? next % 2 : next; // base case just select the index
-            next /= 2;
+        int layerIndex = k;
+        for(int i = n - 1; i >= 0; i--){
+            charDirection[i] = i > 0 ? layerIndex % 2 : layerIndex; // base case just select the index
+            layerIndex /= 2;
         }
-        return chars;
+        return charDirection;
     }
 
-    private static String convertToString(int[] chars) {
+    private static String convertToString(int[] charDirection) {
         StringBuilder sb = new StringBuilder();
-        char latestChar = getFirstChar(chars[0]);
-        sb.append(latestChar);
-        for(int i = 1; i < chars.length; i++){
-            latestChar = getNextChar(latestChar, chars[i]);
-            sb.append(latestChar);
+        char currChar = getFirstChar(charDirection[0]);
+        sb.append(currChar);
+        for(int i = 1; i < charDirection.length; i++){
+            currChar = getNextChar(currChar, charDirection[i]);
+            sb.append(currChar);
         }
         return sb.toString();
     }
@@ -80,16 +83,11 @@ public class KthHappyString_1415 {
         }
     }
 
-    private static char getNextChar(char lastChar, int movement) {
-        /*
-        movement 0 means take the smaller option
-        movement 1 means take the larger option
-        the conditions are simplified here
-         */
-        if(movement == 0){
-            return lastChar == 'a' ? 'b' : 'a';
+    private static char getNextChar(char currChar, int movement) {
+        if(movement == DOWN){
+            return currChar == 'a' ? 'b' : 'a';
         }else{
-            return lastChar == 'c' ? 'b' : 'c';
+            return currChar == 'c' ? 'b' : 'c';
         }
     }
 
