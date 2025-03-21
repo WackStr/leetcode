@@ -1,4 +1,4 @@
-package com.wackstr.leetcode.linkedlist_learn;
+package com.wackstr.leetcode.learn.linkedlist;
 
 class MyLinkedList {
 

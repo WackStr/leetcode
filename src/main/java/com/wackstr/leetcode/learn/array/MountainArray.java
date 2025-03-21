@@ -1,4 +1,4 @@
-package com.wackstr.leetcode.array_learn;
+package com.wackstr.leetcode.learn.array;
 
 public class MountainArray {
 
