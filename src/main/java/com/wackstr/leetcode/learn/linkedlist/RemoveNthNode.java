@@ -1,14 +1,6 @@
 package com.wackstr.leetcode.learn.linkedlist;
 
 public class RemoveNthNode {
-    public static class ListNode {
-        int val;
-        ListNode next;
-        public ListNode(int x){
-            val = x;
-            next = null;
-        }
-    }
 
     public ListNode removeNthFromEnd(ListNode head, int n){
         ListNode leadPointer = head;

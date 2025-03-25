@@ -2,15 +2,6 @@ package com.wackstr.leetcode.learn.linkedlist;
 
 public class LinkedListIntersection {
 
-    private static class ListNode{
-        int val;
-        ListNode next;
-        public ListNode(int x){
-            val = x;
-            next = null;
-        }
-    }
-
     public ListNode getIntersectionNode(ListNode headA, ListNode headB){
         int lengthA = 1;
         int lengthB = 1;

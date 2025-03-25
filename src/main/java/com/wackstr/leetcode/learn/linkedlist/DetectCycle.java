@@ -1,14 +1,6 @@
 package com.wackstr.leetcode.learn.linkedlist;
 
 public class DetectCycle {
-    private static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x){
-            val = x;
-            next = null;
-        }
-    }
 
     public ListNode detectCycle(ListNode head) {
         ListNode slow = head;
