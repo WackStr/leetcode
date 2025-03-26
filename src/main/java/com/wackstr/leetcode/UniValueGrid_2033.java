@@ -14,7 +14,10 @@ public class UniValueGrid_2033 {
 
         // Flatten the grid into numsArray
         for (int row = 0; row < grid.length; row++) {
-            System.arraycopy(grid[row], 0, numsArray, row * grid[0].length, grid[0].length);
+            for(int col = 0; col < grid[0].length; col++){
+                if((grid[0][0] - grid[row][col]) % x != 0) return -1;
+                numsArray[row * grid[0].length + col] = grid[row][col];
+            }
         }
 
         // Sort numsArray in non-decreasing order to easily find the median
@@ -26,15 +29,11 @@ public class UniValueGrid_2033 {
 
         // Iterate through each number in numsArray
         for (int number : numsArray) {
-            // If the remainder when divided by x is different, return -1
-            if (number % x != finalCommonNumber % x) {
-                return -1;
-            }
             // Add the number of operations required to make the current number equal to finalCommonNumber
-            result += Math.abs(finalCommonNumber - number) / x;
+            result += Math.abs(finalCommonNumber - number);
         }
 
-        return result;
+        return result / x;
     }
 
     public static void main(String[] args) {
