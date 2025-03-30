@@ -1,6 +1,10 @@
 package com.wackstr.leetcode.learn.linkedlist;
 
 public class RemoveElement {
+    /*
+    Given the head of a linked list and an integer val, remove all the
+    nodes of the linked list that has Node.val == val, and return the new head.
+     */
     public ListNode removeElements(ListNode head, int val){
         ListNode curr = head;
         while(curr != null && curr.val == val){
