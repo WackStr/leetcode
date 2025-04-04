@@ -51,14 +51,18 @@ public class TreeNode {
         nodesCollected.add(this.val);
         while (!nodes.isEmpty()) {
             TreeNode curr = nodes.remove();
-            if (curr != null) {
+            if (curr != null && (curr.left != null || curr.right != null)) {
                 if (curr.left != null) {
                     nodesCollected.add(curr.left.val);
                     nodes.add(curr.left);
+                }else{
+                    nodesCollected.add(null);
                 }
                 if (curr.right != null) {
                     nodesCollected.add(curr.right.val);
                     nodes.add(curr.right);
+                }else{
+                    nodesCollected.add(null);
                 }
             }
         }
