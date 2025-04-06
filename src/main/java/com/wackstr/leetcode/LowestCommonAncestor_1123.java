@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class LowestCommonAncestor_1123 {
     public TreeNode lcaDeepestLeaves(TreeNode root) {
-        return dfs(root).getKey();
+        return dfs(root).key();
     }
 
     private Pair<TreeNode, Integer> dfs(TreeNode root) {
@@ -24,13 +24,13 @@ public class LowestCommonAncestor_1123 {
         Pair<TreeNode, Integer> left = dfs(root.left);
         Pair<TreeNode, Integer> right = dfs(root.right);
 
-        if (left.getValue() > right.getValue()) {
-            return new Pair<>(left.getKey(), left.getValue() + 1);
+        if (left.value() > right.value()) {
+            return new Pair<>(left.key(), left.value() + 1);
         }
-        if (left.getValue() < right.getValue()) {
-            return new Pair<>(right.getKey(), right.getValue() + 1);
+        if (left.value() < right.value()) {
+            return new Pair<>(right.key(), right.value() + 1);
         }
-        return new Pair<>(root, left.getValue() + 1);
+        return new Pair<>(root, left.value() + 1);
     }
 
     private TreeNode getTreeNode_ancestorSearch(TreeNode root) {
