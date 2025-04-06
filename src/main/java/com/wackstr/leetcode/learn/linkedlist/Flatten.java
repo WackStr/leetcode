@@ -34,36 +34,60 @@ public class Flatten {
                 curr = curr.next;
             }
             if (curr != null) {
-                // recursively flatten this child - this returns the child
-                // and all nodes in a flat list
-                Node child = flatten(curr.child);
+                // recursively flatten this child - this returns the tail
+                // of the flattened list
+                Node tail = flattenToTail(curr.child);
 
                 /*
                 following pointer adjustments need to be made
 
-                curr <-> child ... childEnd <-> curr.next
+                curr <-> child ... tail <-> curr.next
 
                 the order needs to be carefully handled
 
-                child.prev to curr
-                childEnd.next to curr.next
-                curr.next.prev to childEnd
+                curr.child.prev to curr
+                tail.next to curr.next
+                curr.next.prev to tail
                 curr.next to child
                  */
-                child.prev = curr;
-                Node childEnd = child;
-                while(childEnd.next != null){
-                    childEnd = childEnd.next;
-                }
-                childEnd.next = curr.next;
-                if(curr.next != null) curr.next.prev = childEnd;
-                curr.next = child;
+                curr.child.prev = curr;
+                tail.next = curr.next;
+                if(curr.next != null) curr.next.prev = tail;
+                curr.next = curr.child;
                 curr.child = null;
                 // jump to the end
-                curr = childEnd.next;
+                curr = tail.next;
             }
         }
         return head;
+    }
+
+    /*
+    When flattening, getting the tail is helpful so that we don't
+    have to do an extra iteration towards the end of the flattened
+    list to adjust our pointers in the main flatten function
+     */
+    public Node flattenToTail(Node head){
+        Node curr = head;
+        Node prev = null;
+        while(curr != null) {
+            while (curr != null && curr.child == null) {
+                prev = curr;
+                curr = curr.next;
+            }
+            if (curr != null) {
+                Node tail = flattenToTail(curr.child);
+                curr.child.prev = curr;
+                tail.next = curr.next;
+                if (curr.next != null) curr.next.prev = tail;
+                curr.next = curr.child;
+                curr.child = null;
+                // jump to the end
+                curr = tail.next;
+                prev = tail;
+            }
+        }
+        return prev;
     }
 
     public static void main(String[] args) {
