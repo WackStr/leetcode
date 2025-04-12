@@ -1,10 +1,15 @@
 package com.wackstr.leetcode;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /*
 2025-04-12
  */
 public class KPalindrome_3272 {
     public long countGoodIntegers(int n, int k) {
+
         Set<String> dict = new HashSet<>();
         int base = (int) Math.pow(10, (n - 1) / 2);
         int skip = n & 1;
