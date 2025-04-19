@@ -35,7 +35,7 @@ public class FairPairs_2563 {
         while(left < right){
             int sum = nums[left] + nums[right];
             if(sum < bound) {
-                ans++;
+                ans += right - left;
                 left++;
             }else{
                 right--;
