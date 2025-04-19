@@ -1,10 +1,10 @@
 package com.wackstr.leetcode;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
 
 /*
 2024-11-13
+2025-4-19
  */
 public class FairPairs_2563 {
 
@@ -21,6 +21,27 @@ public class FairPairs_2563 {
             }
         }
         return count;
+    }
+
+    public int countFairsPairsTwoPointers(int[] nums, int lower, int upper){
+        Arrays.sort(nums);
+        return countPairsLessThan(nums, upper + 1) - countPairsLessThan(nums, lower);
+    }
+
+    public int countPairsLessThan(int[] nums, int bound){
+        int left = 0;
+        int right = nums.length - 1;
+        int ans = 0;
+        while(left < right){
+            int sum = nums[left] + nums[right];
+            if(sum < bound) {
+                ans++;
+                left++;
+            }else{
+                right--;
+            }
+        }
+        return ans;
     }
 
     private int bisectGreatestLowerBound(int[] nums, int target, int left, int right) {
