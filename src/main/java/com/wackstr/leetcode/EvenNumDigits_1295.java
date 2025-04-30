@@ -1,6 +1,9 @@
 package com.wackstr.leetcode;
 
-public class EvenNumDigits {
+/*
+2025-04-30
+ */
+public class EvenNumDigits_1295 {
     public int findNumbers(int[] nums){
         int cnt = 0;
         for(int num : nums){
@@ -20,7 +23,7 @@ public class EvenNumDigits {
 
     public static void main(String[] args) {
         int[] nums = {12, 345, 2, 6, 7896};
-        EvenNumDigits sol = new EvenNumDigits();
+        EvenNumDigits_1295 sol = new EvenNumDigits_1295();
         System.out.println(sol.findNumbers(nums));
     }
 }
