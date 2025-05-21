@@ -9,21 +9,21 @@ import java.util.Set;
  */
 public class ZeroMatrix_73 {
     public void setZeroes(int[][] matrix){
-        int n = matrix[0].length;
-        int m = matrix.length;
-        Set<Integer> rows = new HashSet<>();
-        Set<Integer> columns = new HashSet<>();
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
+        int n = matrix.length;
+        int m = matrix[0].length;
+        boolean[] rows = new boolean[n];
+        boolean[] columns = new boolean[m];
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
                 if(matrix[i][j] == 0) {
-                    rows.add(i);
-                    columns.add(j);
+                    rows[i] = true;
+                    columns[j] = true;
                 }
             }
         }
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                if(rows.contains(i) || columns.contains(j))
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(rows[i] || columns[j])
                     matrix[i][j] = 0;
 
             }
