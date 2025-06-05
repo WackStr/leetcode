@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class LexicographicalEquivalent_1061 {
 
     /*
-    A union find structure that also marks the lexigraphically smallest
+    A union find structure that also marks the lexicographically smallest
     element of each group
      */
     private static class UnionFind {
@@ -22,7 +22,7 @@ public class LexicographicalEquivalent_1061 {
         private final char[] lowest = new char[CHARS];
 
         public UnionFind(){
-            // initiallization
+            // initialization
             for(int i = 0; i < groups.length; i++){
                 char c = getChar(i);
                 groups[i] = c; // each char is initially in its own group
@@ -46,9 +46,9 @@ public class LexicographicalEquivalent_1061 {
         public void union(char c1, char c2) {
             char p1 = find(c1);
             char p2 = find(c2);
+            if(p1 == p2) return;
             int i1 = getIndex(p1);
             int i2 = getIndex(p2);
-            if(p1 == p2) return;
             // merge the smaller group into the larger group
             if(groupSize[i1] > groupSize[i2]) {
                 groups[i2] = p1;
@@ -99,7 +99,7 @@ public class LexicographicalEquivalent_1061 {
         }
         uf.updateMinMapping();
 
-        // use this mapping to find lowest chars against baseStr
+        // use this mapping to find the lowest chars against baseStr
         StringBuilder res = new StringBuilder();
         for(int i = 0; i < baseStr.length(); i++){
             res.append(uf.findLowest(baseStr.charAt(i)));
