@@ -29,8 +29,11 @@ public class LexicographicalPrint_386 {
                 We can get the next closest element by just adding 1
 
                 However, if the last digit is 9, adding 1 would result in
-                multiplication by 10 by an existing number that we would have
-                already processed above hence not adding in that case
+                multiplication by 10. We will reach this number in its correct
+                order if we multiply a smaller number by 10 above
+
+                So we will skip that case here to prevent wrong ordering
+                and duplication
              */
             if(curr % 10 != 9) {
                 add(curr + 1, n, res);
