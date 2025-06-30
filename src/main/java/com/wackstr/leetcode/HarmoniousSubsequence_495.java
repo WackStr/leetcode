@@ -8,16 +8,13 @@ import java.util.Arrays;
 public class HarmoniousSubsequence_495 {
     public int findLHS(int[] nums){
         Arrays.sort(nums);
-        int max = 0;
         int left = 0;
-        int right = 0;
-        while(right < nums.length) {
-            while (right < nums.length && nums[right] - nums[left] <= 1) right++;
-            if(nums[right-1] - nums[left] == 1) max = Math.max(max, right - left);
-            if(right >= nums.length) break;
-            while(left < right && nums[right] - nums[left] > 1) left++;
+        int max = 0;
+        for(int right = 0; right < nums.length; right++){
+            while(nums[right] - nums[left] > 1) left++;
+            if(nums[right] - nums[left] == 1) max = Math.max(max, right - left + 1);
         }
-        return max == 1 ? 0 : max;
+        return max;
     }
 
     public static void main(String[] args) {
