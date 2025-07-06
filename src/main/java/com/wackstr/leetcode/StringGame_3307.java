@@ -48,8 +48,8 @@ public class StringGame_3307 {
     }
 
     public static void main(String[] args) {
-        int[] operations = {1,1};
-        int k = 4;
+        int[] operations = {1,1,1};
+        int k = 7;
         StringGame_3307 sol = new StringGame_3307();
         System.out.println(sol.kthCharacter(k, operations));
     }
