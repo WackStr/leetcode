@@ -1,8 +1,5 @@
 package com.wackstr.leetcode;
 
-import java.util.Arrays;
-import java.util.Comparator;
-
 /*
 2025-08-07
  */
@@ -11,24 +8,51 @@ public class MaximumFruits_3363 {
     private int[][] TOP_RIGHT = {{1, -1}, {1, 0}, {1, 1}};
     private int[][] BOTTOM_LEFT = {{-1, 1}, {0, 1}, {1, 1}};
 
+    private int[] DIRECTIONS = {-1, 0, 1};
+
     public int maxCollectedFruits(int[][] fruits){
 
         int n = fruits.length;
+        int[][] sol = new int[n][n];
+        sol[n-1][n-1] = fruits[n-1][n-1];
+
+        for(int i = n - 2; i >= 0; i--){
+            int limit = Math.max(n - i - 2, i);
+            int x = i + 1;
+            for(int j = n - 1; j > limit; j--){
+                int maxVal = 0;
+                for(int dir : DIRECTIONS){
+                    int y = j + dir;
+                    if(x == n -1 && y == n-1 ||
+                            (y < n && x < y))
+                        maxVal = Math.max(maxVal, sol[x][y]);
+                }
+                sol[i][j] = fruits[i][j] + maxVal;
+            }
+        }
+
+        for(int j = n-2; j >= 0; j--){
+            int limit = Math.max(n - j - 2, j);
+            int y = j + 1;
+            for(int i = n -1; i > limit; i--){
+                int maxVal = 0;
+                for(int dir : DIRECTIONS){
+                    int x = i + dir;
+                    if(x == n - 1 && y == n - 1 || (x < n && y < x)){
+                        maxVal = Math.max(maxVal, sol[x][y]);
+                    }
+                }
+                sol[i][j] = fruits[i][j] +  maxVal;
+            }
+        }
+
         int diagonalSum = 0;
         for(int i = 0; i < n; i++){
             diagonalSum += fruits[i][i];
         }
 
-        int[][] dp = new int[n][n];
-        for (int[] arr : dp){
-            Arrays.fill(arr, -1);
-        }
-        dp[n - 1][n-1] = fruits[n-1][n-1];
-        int maxRight = getMaxFruitsTR(fruits, 0, n - 1, dp);
-        int maxBottom = getMaxFruitsBL(fruits, n-1, 0, dp);
-
-        return diagonalSum + maxRight + maxBottom
-                - 2 * fruits[fruits.length - 1][fruits.length - 1];
+        return sol[0][n-1] + sol[n-1][0] + diagonalSum
+                - 2 * sol[n - 1][n - 1];
     }
 
     private int getMaxFruitsTR(
