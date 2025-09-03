@@ -1,9 +1,11 @@
 package com.wackstr.leetcode;
 
+import java.util.Arrays;
+
 public class PlacePeople_3027 {
     public int numberOfPairs(int[][] points) {
         int cnt = 0;
-        Arrays.sort(points, (a,b)-> a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]);
+        Arrays.sort(points, (a, b)-> a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]);
         for(int i = 0; i < points.length; i++){
             int[] basePoint = points[i];
             for(int j = i+1; j < points.length;j++){
