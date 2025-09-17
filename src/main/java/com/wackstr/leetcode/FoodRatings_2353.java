@@ -25,7 +25,7 @@ class Food implements Comparable<Food> {
     }
 }
 
-class FoodRatings {
+class FoodRatings_2353 {
     // Map food with its rating.
     private Map<String, Integer> foodRatingMap;
     // Map food with the cuisine it belongs to.
@@ -35,7 +35,7 @@ class FoodRatings {
     // Priority queue element -> Food: (foodRating, foodName)
     private Map<String, PriorityQueue<Food>> cuisineFoodMap;
 
-    public FoodRatings(String[] foods, String[] cuisines, int[] ratings) {
+    public FoodRatings_2353(String[] foods, String[] cuisines, int[] ratings) {
         foodRatingMap = new HashMap<>();
         foodCuisineMap = new HashMap<>();
         cuisineFoodMap = new HashMap<>();
