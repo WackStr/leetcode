@@ -7,11 +7,55 @@ import java.util.Set;
 
 /*
 2024-11-21
+2025-11-02
  */
 public class UnguardedCellsInGrid_2257 {
 
     public int countUnguarded(
             int m, int n, int[][] guards, int[][] walls) {
+        char[][] cells = new char[m][n];
+
+        for(int[] guard : guards) cells[guard[0]][guard[1]] = 'g';
+        for(int[] wall: walls) cells[wall[0]][wall[1]] = 'w';
+
+
+        for(int[] guard : guards){
+            // down
+            for(int i = guard[0] + 1; i < m; i++){
+                if(cells[i][guard[1]] == 'w' || cells[i][guard[1]] == 'g') break;
+                cells[i][guard[1]] ='x';
+            }
+
+            // up
+            for(int i = guard[0] - 1; i >= 0; i--){
+                if(cells[i][guard[1]] == 'w' || cells[i][guard[1]] == 'g') break;
+                cells[i][guard[1]] ='x';
+            }
+
+            // right
+            for(int j = guard[1] + 1; j < n; j++){
+                if(cells[guard[0]][j] == 'w' || cells[guard[0]][j] == 'g') break;
+                cells[guard[0]][j] ='x';
+            }
+
+            // left
+            for(int j = guard[1] - 1; j >= 0; j--){
+                if(cells[guard[0]][j] == 'w' || cells[guard[0]][j] == 'g') break;
+                cells[guard[0]][j] ='x';
+            }
+        }
+
+        int total = 0;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(cells[i][j] == '\u0000' ) total++;
+            }
+        }
+
+        return total;
+    }
+
+    private int oldApproach_2024(int m, int n, int[][] guards, int[][] walls) {
         Map<Integer, Set<Integer>> cells = getCellCollection(m, n);
         Map<Integer, Set<Integer>> guardsLookup = mapToLookup(guards);
         Map<Integer, Set<Integer>> wallsLookup = mapToLookup(walls);
