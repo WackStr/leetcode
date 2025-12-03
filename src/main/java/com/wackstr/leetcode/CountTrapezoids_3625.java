@@ -5,7 +5,7 @@ import java.util.*;
 /*
 2025-12-03
  */
-public class CoutnTrapezoids_3625 {
+public class CountTrapezoids_3625 {
     public int countTrapezoids(int[][] points) {
         int n = points.length;
         double inf = 1e9 + 7;
