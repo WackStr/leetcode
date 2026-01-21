@@ -5,6 +5,7 @@ import java.util.List;
 
 /*
 2026-01-20
+also 3315
  */
 public class BitwiseArray_3314 {
     public int[] minBitwiseArray(List<Integer> nums){
