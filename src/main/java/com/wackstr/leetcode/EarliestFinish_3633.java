@@ -2,6 +2,7 @@ package com.wackstr.leetcode;
 
 /*
 2026-06-02 3633
+2026-06-03 3635
  */
 public class EarliestFinish_3633 {
     private int solve(
