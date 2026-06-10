@@ -1,5 +1,7 @@
 package com.wackstr.leetcode;
 
+import java.util.PriorityQueue;
+
 /*
 2026-06-10 3691
  */
