@@ -1,4 +1,4 @@
-package com.wackstr;
+package com.wackstr.leetcode;
 
 /*
 2026-07-18
