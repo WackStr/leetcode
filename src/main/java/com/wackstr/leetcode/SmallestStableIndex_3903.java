@@ -2,6 +2,7 @@ package com.wackstr.leetcode;
 
 /*
 2026-09-04 3903
+2026-09-05 3904
  */
 public class SmallestStableIndex_3903 {
     public int firstStableIndex(int[] nums, int k) {
