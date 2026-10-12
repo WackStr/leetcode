@@ -1,5 +1,7 @@
 package com.wackstr.leetcode;
 
+import java.util.List;
+
 /*
 2026-10-12 2897
  */
