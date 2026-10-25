@@ -1,5 +1,8 @@
 package com.wackstr.leetcode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /*
 2026-10-25 1254
  */
@@ -48,5 +51,4 @@ public class ClosedIslands_1254 {
 
         return isClosed;
     }
-}
 }
