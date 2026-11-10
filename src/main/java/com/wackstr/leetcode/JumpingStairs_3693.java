@@ -7,19 +7,17 @@ import java.util.Arrays;
  */
 public class JumpingStairs_3693 {
 
-    public int climbStairs(int n, int[] costs){
-        int[] dp = new int[costs.length+1];
-        dp[dp.length - 1] = 0;
-        for (int i = dp.length - 2; i >= 0; i--) {
-            dp[i] = costs[i] + dp[i+1] + 1;
-            if(i < dp.length - 2) {
-                dp[i] = Math.min(dp[i], costs[i + 1] + dp[i + 2] + 4);
-            }
-            if(i < dp.length - 3) {
-                dp[i] = Math.min(dp[i], costs[i + 2] + dp[i + 3] + 9);
-            }
+    public int climbStairs(int n, int[] costs) {
+        int a = 0,
+                b = 0,
+                c = 0;
+        for (int i = 0; i < n; ++i) {
+            int nxt = Math.min(Math.min(a + 9, b + 4), c + 1) + costs[i];
+            a = b;
+            b = c;
+            c = nxt;
         }
-        return dp[0];
+        return c;
     }
 
     public static void main(String[] args) {
