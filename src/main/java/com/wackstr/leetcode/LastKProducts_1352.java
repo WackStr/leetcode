@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /*
 2025-02-14
+2026-11-23
  */
 public class LastKProducts_1352 {
     public static class ProductOfNumbers {
